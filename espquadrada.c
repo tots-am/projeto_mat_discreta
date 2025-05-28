@@ -11,7 +11,7 @@ void coordenada(int ponto, int *x, int *y) {
     int k = 0;
     int total = 0;
 
-    // Descobre em qual camada k o ponto está
+    //Loop para descobrir em qual camada esta o numero
     while (1) {
         k++;
         int pts_k = 8 * k;
@@ -22,7 +22,7 @@ void coordenada(int ponto, int *x, int *y) {
         total = total + pts_k;
     }
 
-    // Resta saber a posição dentro da camada
+    // Resta saber a posicao dentro da camada
     int resto = ponto - total;
     int lado = resto / (2 * k); // lado da espiral
     int offset = resto % (2 * k);
