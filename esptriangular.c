@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-void moveUL(int *x, int *y){ //função para mover para cima e esquerda
+void moveUL(int *x, int *y){ //funcao para mover para cima e esquerda
     *x = *x - 1;
     *y = *y + 1;
 }
 
-void moveDL(int *x, int *y){//função para mover para baixo e esquerda
+void moveDL(int *x, int *y){//funcao para mover para baixo e esquerda
     *x = *x - 1;
     *y = *y - 1;
 }
 
-void moveR(int *x, int *y){//função para mover para direita
+void moveR(int *x, int *y){//funcao para mover para direita
     *x = *x + 1;
 }
 
@@ -29,9 +29,10 @@ void coordenada(int ponto, int *x, int *y){
     int x_origem = 1;
     int y_origem = 0;
 
-    int sequencia[3] = {1, 2, 4}; //movimentos cima esquerda, baixo esquerda e direita
+    int sequencia[3] = {1, 2, 5}; //movimentos cima esquerda, baixo esquerda e direita
 
-    while(ponto > origem_k_next) //Loop para descobrir em qual camada está o numero
+    //Loop para descobrir em qual camada esta o numero
+    while(ponto > origem_k_next)
     {
         k++; //Atualizando a camada
 
@@ -50,14 +51,14 @@ void coordenada(int ponto, int *x, int *y){
     *x = x_origem; //igualando as coordenadas do ponto a coordenada da origem da camada
     *y = y_origem;
 
-    if(ponto == origem_k) //verificando se o ponto é o mesmo que da origem
+    if(ponto == origem_k) //verificando se o ponto eh o mesmo que da origem
     {
         return;
     }
 
     int offset = ponto - origem_k; //calculando quantos blocos percorrer
 
-    //loop para percorrer a camada na sequencia certa e checar a cada iteração se o ponto é o correto
+    //loop para percorrer a camada na sequencia certa e checar a cada iteracao se o ponto eh o correto
     while(1){
         for(int i = 0; i < sequencia[0]; i++)
         {
