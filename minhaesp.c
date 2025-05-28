@@ -1,47 +1,48 @@
-//Contem o código para a espiral "tornado" (octogono em 3d na direcao z)
+//Contem o codigo para a espiral "tornado" (octogono em 3d na direcao z positiva)
 
 #include <stdio.h>
 
-void moveR(int *x, int *y){
+void moveR(int *x, int *y){//Funcao para mover para direita
     *x = *x + 1;
 }
 
-void moveL(int *x, int *y){
+void moveL(int *x, int *y){//Funcao para mover para esquerda
     *x = *x - 1;
 }
 
-void moveU(int *x, int *y){
+void moveU(int *x, int *y){//Funcao para mover para cima
     *y = *y + 1;
 }
 
-void moveD(int *x, int *y){
+void moveD(int *x, int *y){//Funcao para mover para baixo
     *y = *y - 1;
 }
 
-void moveUL(int *x, int *y){ //função para mover para cima e esquerda
+void moveUL(int *x, int *y){ //funcao para mover para cima e esquerda
     *x = *x - 1;
     *y = *y + 1;
 }
 
-void moveDL(int *x, int *y){//função para mover para baixo e esquerda
+void moveDL(int *x, int *y){//funcao para mover para baixo e esquerda
     *x = *x - 1;
     *y = *y - 1;
 }
 
-void moveDR(int *x, int *y){
+void moveDR(int *x, int *y){//Funcao para mover para baixo e direita
     *x = *x + 1;
     *y = *y - 1;
 }
 
-void moveUR(int *x, int *y){
+void moveUR(int *x, int *y){//Funcao para cima e para direita
     *x = *x + 1;
     *y = *y + 1;
 }
 
-void coordenada(int ponto, int *x, int *y, float *z){
-    if(ponto == 0){
+void coordenada(int ponto, int *x, int *y, float *z){//Funcao para encontrar a coordenada
+    if(ponto == 0){ // Se o ponto Ã© 0, retorne 0
         return;
     }
+    //Faz as inicializacoes de camada e das variaveis base
 
     int k = 1;
 
@@ -55,6 +56,7 @@ void coordenada(int ponto, int *x, int *y, float *z){
 
     int sequencia[8] = {0, 1, 1, 1, 2, 2, 2, 2};
 
+    //Loop para descobrir em qual camada esta o numero
     while(ponto > origem_k_next)
     {
         k++;
@@ -74,17 +76,18 @@ void coordenada(int ponto, int *x, int *y, float *z){
     *x = x_origem; //igualando as coordenadas do ponto a coordenada da origem da camada
     *y = y_origem;
 
-    int offset = ponto - origem_k;
+    int offset = ponto - origem_k; //calculando a distancia entre o ponto desejado e o inicio da camada
 
-    *z = k;
+    *z = k; //inicializando z igual a k, e depois incrementando com base na regra estabelecida
     float diff = 100000/pontos_k;
     *z = *z + (diff / 100000) * offset;
 
-    if(ponto == origem_k) //verificando se o ponto é o mesmo que da origem
+    if(ponto == origem_k) //verificando se o ponto e o mesmo que da origem
     {
         return;
     }
 
+    //Loop para percorrer a camada e checar se estÃ¡ no ponto desejado
     while(1){
         for(int i = 0; i < sequencia[0]; i++)
         {
@@ -149,39 +152,51 @@ void coordenada(int ponto, int *x, int *y, float *z){
 }
 
 int main() {
-
     int ponto;
-
-    while(ponto > -1)
+    while(ponto != -1)
     {
-        int x = 0; int y = 0; float z = 0;
-        scanf("%d", &ponto);
+        printf("=== Insira um ponto ===\n*Digite um ponto < -1 para rodar o script\n*Digite -1 para encerrar\n");
+        
+        //Loop para permitir o usuario fazer input de vÃ¡rios pontos sem encerrar o programa
+        if(ponto > -1){
+            while(ponto > -1)
+            {
+                int x = 0; int y = 0; float z = 0;
 
-        if(ponto < 0){
-            break;
-        }
-        else{
-            coordenada(ponto, &x, &y, &z);
-        }
+                if(ponto < 0){
+                    break;
+                }
+                else{
+                    coordenada(ponto, &x, &y, &z);
+                }
 
-        printf("(%d, %d, %.3f)\n", x, y, z);
+                printf("(%d, %d, %.3f)\n", x, y, z);
+            }
     }
 
-    ponto = ponto * (-1);
-    int ref = ponto;
-    ponto = 0;
+    if(ponto == -1){
+        return 0;
+    }
 
-    while(ponto < ref){
-        int x = 0;
-        int y = 0;
-        float z = 0;
+    //Loop escondido para retornar os pontos no intervalo [0, ponto] em que y = 0
+    if(ponto < -1){
+        ponto = ponto * (-1);
+        int ref = ponto;
+        ponto = 0;
 
-        coordenada(ponto, &x, &y, &z);
+        while(ponto < ref){
+            int x = 0;
+            int y = 0;
+            float z = 0;
 
-        if(y == 0){
-            printf("(%d, %d, %.6f)\n", x, y, z);
+            coordenada(ponto, &x, &y, &z);
+
+            if(y == 0){
+                printf("(%d, %d, %.6f)\n", x, y, z);
+            }
+            ponto++;
         }
-        ponto++;
+    }
     }
 
     return 0;
