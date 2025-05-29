@@ -46,7 +46,7 @@ void coordenada(int ponto, int *x, int *y, float *z){//Funcao para encontrar a c
 
     int k = 1;
 
-    int pontos_k = (12*k) + (4*(k-1));
+    int pontos_k = 16*k - 4;
     int origem_k = 1;
 
     int origem_k_next = k + pontos_k;
@@ -65,7 +65,7 @@ void coordenada(int ponto, int *x, int *y, float *z){//Funcao para encontrar a c
         x_origem = x_origem - 1;
         y_origem = y_origem - 3;
 
-        pontos_k = (12*k) + (4*(k-1));
+        pontos_k = 16*k - 4;
         origem_k_next = origem_k_next + pontos_k;
 
         for(int i = 0; i < 8; i++){
