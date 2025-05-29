@@ -152,15 +152,16 @@ void coordenada(int ponto, int *x, int *y, float *z){//Funcao para encontrar a c
 }
 
 int main() {
-    int ponto;
+    int ponto = 1;
+
     while(ponto != -1)
     {
         printf("=== Insira um ponto ===\n*Digite um ponto < -1 para rodar o script\n*Digite -1 para encerrar\n");
-        
         //Loop para permitir o usuario fazer input de vários pontos sem encerrar o programa
         if(ponto > -1){
             while(ponto > -1)
             {
+                scanf("%d", &ponto);
                 int x = 0; int y = 0; float z = 0;
 
                 if(ponto < 0){
@@ -172,31 +173,31 @@ int main() {
 
                 printf("(%d, %d, %.3f)\n", x, y, z);
             }
-    }
-
-    if(ponto == -1){
-        return 0;
-    }
-
-    //Loop escondido para retornar os pontos no intervalo [0, ponto] em que y = 0
-    if(ponto < -1){
-        ponto = ponto * (-1);
-        int ref = ponto;
-        ponto = 0;
-
-        while(ponto < ref){
-            int x = 0;
-            int y = 0;
-            float z = 0;
-
-            coordenada(ponto, &x, &y, &z);
-
-            if(y == 0){
-                printf("(%d, %d, %.6f)\n", x, y, z);
-            }
-            ponto++;
         }
-    }
+
+        if(ponto == -1){
+            return 0;
+        }
+
+        //Loop escondido para retornar os pontos no intervalo [0, ponto] em que y = 0
+        if(ponto < -1){
+            ponto = ponto * (-1);
+            int ref = ponto;
+            ponto = 0;
+
+            while(ponto < ref){
+                int x = 0;
+                int y = 0;
+                float z = 0;
+
+                coordenada(ponto, &x, &y, &z);
+
+                if(y == 0){
+                    printf("(%d, %d, %.6f)\n", x, y, z);
+                }
+                ponto++;
+            }
+        }
     }
 
     return 0;
