@@ -156,7 +156,7 @@ int main() {
 
     while(ponto != -1)
     {
-        printf("=== Insira um ponto ===\n*Digite um ponto < -1 para rodar o script\n*Digite -1 para encerrar\n");
+        //printf("=== Insira um ponto ===\n*Digite um ponto < -1 para rodar o script\n*Digite -1 para encerrar\n");
         //Loop para permitir o usuario fazer input de vários pontos sem encerrar o programa
         if(ponto > -1){
             while(ponto > -1)
