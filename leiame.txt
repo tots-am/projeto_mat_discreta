@@ -1,0 +1,26 @@
+# Introdução
+
+Ola, bem vindo ao Trabalho Pratico da disciplina de Matematica Discreta 2025.1,
+aqui voce encontrara um guia rapido de como compilar e executar os programas 
+que foram requisitados, sendo eles:
+- espquadrada.c
+- esptriangular.c
+- minhaesp.c 
+
+Para uma descricao mais detalhada, veja a documentacao do projeto no arquivo pdf
+tomasmoreira.pdf, que esta neste zip.
+
+# Requerimentos
+
+É preciso ter o compilador gcc instalado na sua maquina.
+
+Os arquivos nao requerem nenhuma biblioteca externa a linguagem c.
+
+# Execucao
+
+Para compilar o código use o comando:
+- gcc <nome_do_arquivo.c> -o <nome_do_executavel>
+- exemplo: gcc espquadrada.c -c espquadrada
+
+Para executar o código use o comando ./<nome_do_executavel>
+(para que isso funcione deve se estar dentro do diretorio do projeto, senão especifique o caminho)
